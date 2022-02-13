@@ -1,0 +1,49 @@
+{
+  "name": "@rui/rui",
+  "private": true,
+  "version": "0.0.0",
+  "keywords": [
+    "frontend",
+    "library",
+    "vue 3",
+    "vite",
+    "components",
+    "vite-library-stater"
+  ],
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "dev": "cd packages/example && pnpm dev",
+    "build": "rimraf dist && npm run check && vite build && npm run types",
+    "check": "tsc --noEmit",
+    "types": "tsc --emitDeclarationOnly --project tsconfig.build.json",
+    "build:alert": "cd packages/alert && npm run build",
+    "preview": "vite preview"
+  },
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/types/index.d.ts",
+  "main": "./dist/rui.umd.js",
+  "module": "./dist/rui.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/rui.es.js",
+      "require": "./dist/tui.umd.js"
+    }
+  },
+  "dependencies": {
+    "@rui/alert": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.17",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.5.4",
+    "vite": "^2.8.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "vue": "^3.2.31",
+      "@rui/alert": "workspace:*"
+    }
+  }
+}
